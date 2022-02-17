@@ -1,0 +1,28 @@
+
+
+
+.list {
+    display: flex;
+    width: 30rem;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto; 
+    margin: 10px;
+    margin-left: 30%;
+    
+    border-bottom: solid 0.3px rgb(102, 102, 102);
+    background-color: white;
+}
+
+.primary {
+    background-color: blue;
+    color: white;
+    border: none;
+    margin: 0.5em;
+}
+
+.danger {
+    background-color: red;
+    color: white;
+    border: none;
+}

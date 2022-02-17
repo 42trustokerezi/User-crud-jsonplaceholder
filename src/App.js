@@ -1,69 +1,117 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import AddPost from './components/AddPost';
+import AddUser from './components/AddUser';
 
-import Post from './components/Post'
+import User from './components/User'
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     fetchData();
   },[])
 
   const fetchData = async () => {
-    await fetch('http://jsonplaceholder.typicode.com/users/1/posts')
+    await fetch('https://jsonplaceholder.typicode.com/users')
     .then((res) => res.json())
-    .then((data) => setPosts(data))
+    .then((data) => setUsers(data))
     .catch((err) => {
       console.log(err)
     })
   }
 
-  const onAdd  = async (title, body) => {
-    await fetch('http://jsonplaceholder.typicode.com/users/1/posts', {
+  const onAdd  = async (name, email) => {
+    await fetch('https://jsonplaceholder.typicode.com/users', {
       method: 'POST',
       body: JSON.stringify({
-        title: title,
-        body: body
+        name: name,
+        email: email
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       }
     })
     .then((res) => {
-      if(res.status != 201){
+      if(res.status !== 201){
         return
       }else{
         return res.json()
       }
     })
     .then((data) => {
-      setPosts((posts) => [...posts, data]);
+      setUsers((users) => [...users, data]);
     })
     .catch((err) => {
       console.log(err);
     })
   }
 
+  const onEdit = async (id, name, email) => {
+    await fetch (`https://jsonplaceholder.typicode.com/users/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        name: name,
+        email: email
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+    .then((res) => {
+      if (res.status !== 200) {
+        return;
+      }else {
+        return res.json();
+      }
+    })
+    .then((data) => {
+      const updatedUsers = users.map((user) => {
+        if(user.id === id) {
+          user.name = name;
+          user.email = email;
+        }
+
+        return user;
+      });
+
+      setUsers((users) => updatedUsers);
+    })
+    .catch((err) => console.log(err))
+  }
+
   const onDelete = async (id) => {
-    await fetch(`http://jsonplaceholder.typicode.com/users/1/posts/${id}`, {
+    await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
       method: 'DELETE',
+    })
+    .then((res) => {
+      if(res.status !== 200){
+        return
+      }else{
+        setUsers(users.filter((user) => {
+          return user.id !== id;
+        }))
+      }
+    })
+    .catch((err) => {
+      console.log(err);
     })
   }
 
 
-  console.log(posts);
+  console.log(users);
 
   return (
     <div className="App">
       <h3>CRUD App using JsonPlaceholder</h3>
       <br />
-      <AddPost onAdd={onAdd} />
+      <AddUser onAdd={onAdd} />
       <div>
         {
-          posts.map((post) => (
-            <Post id={post.id} key={post.id} title={post.title} body={post.body} />
+          users.map((user) => (
+            <div className="container">
+              <User id={user.id} key={user.id} name={user.name} email={user.email} onEdit={onEdit} onDelete={onDelete} />
+            </div>
+            
           ))
         }
       </div>
