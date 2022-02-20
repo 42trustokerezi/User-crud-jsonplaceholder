@@ -14,7 +14,7 @@ const AddUser = ({onAdd}) => {
     <div className="container">
         <form onSubmit={handleOnSubmit}>
             <h3>Add User</h3>
-            <input placeholder="ame" name="name" />
+            <input placeholder="name" name="name" />
             <input placeholder="email" name="email" />
             <button className="add-btn" onSubmit={handleOnSubmit}>Add</button>
         </form>
