@@ -15,14 +15,42 @@
 }
 
 .primary {
-    background-color: blue;
+    background-color: #0077b6;
     color: white;
     border: none;
     margin: 0.5em;
 }
 
+.primary:hover{
+    background-color: #09689b;
+}
+
 .danger {
-    background-color: red;
+    background-color: #f94144;
     color: white;
     border: none;
+}
+
+.danger:hover{
+    background-color: #ac1d1f;
+}
+
+.list button {
+    padding: 0.5rem;
+    border-radius: 3px;
+}
+
+.save-btn {
+    background-color: #a0c4ff;
+    height: 2.5rem;
+    width: 4rem;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.save-btn:hover {
+    background-color: #759bd8;
+    transition: ease-in-out 0.2s;
 }

@@ -24,7 +24,7 @@ const User = ({id, name, email, onEdit, onDelete}) => {
             <form onSubmit={handleEditSubmit}>
               <input placeholder="Name" name="name" defaultValue={name} />
               <input placeholder="Email" name="email" defaultValue={email} />
-              <button onSubmit={handleEditSubmit}>Save</button>
+              <button className="save-btn" onSubmit={handleEditSubmit}>Save</button>
             </form>
           ): (
             <div className="list">

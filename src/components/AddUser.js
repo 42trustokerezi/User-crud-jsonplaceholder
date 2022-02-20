@@ -1,20 +1,22 @@
 import React from 'react'
+import "./addUser.css"
 
 const AddUser = ({onAdd}) => {
+  
 
-const handleSubmit = (e) => {
+  const handleOnSubmit = (e) => {
     e.preventDefault();
-    onAdd(e.target.name.value, e.target.email.value);
+    onAdd(e.target.name.value,e.target.email.value);
     e.target.name.value = "";
     e.target.email.value = "";
 }
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
-            <h3>Add Post</h3>
-            <input placeholder="name" name="name" />
+    <div className="container">
+        <form onSubmit={handleOnSubmit}>
+            <h3>Add User</h3>
+            <input placeholder="ame" name="name" />
             <input placeholder="email" name="email" />
-            <button onSubmit={handleSubmit}>Add</button>
+            <button className="add-btn" onSubmit={handleOnSubmit}>Add</button>
         </form>
     </div>
   )

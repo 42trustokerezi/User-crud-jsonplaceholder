@@ -25,7 +25,7 @@ function App() {
       method: 'POST',
       body: JSON.stringify({
         name: name,
-        email: email
+        email: email,
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",

@@ -1,0 +1,25 @@
+
+.container input {
+    border: none;
+    background-color: #e5e5e5;
+    width: 15rem;
+    height: 2rem;
+    margin: 0.2rem;
+    padding: 0.2rem;
+    border-bottom: solid 1px black;
+}
+
+.add-btn {
+    background-color: #a0c4ff;
+    height: 2.5rem;
+    width: 4rem;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.add-btn:hover {
+    background-color: #759bd8;
+    transition: ease-in-out 0.2s;
+}
